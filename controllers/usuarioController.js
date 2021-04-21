@@ -1,7 +1,14 @@
 const Usuario = require('../models/Usuario')
 const bcryptjs = require('bcryptjs')
+const { validationResult } = require('express-validator')
 
 exports.createUsuario = async (req, res) => {
+	// revisar si hay errores de express-validator
+	const errors = validationResult(req) // genera un arreglo
+	if (!errors.isEmpty()) {
+		res.status(400).json({ errores: errors.array() })
+	}
+
 	// extraer email y password
 	const { email, password } = req.body
 
