@@ -1,5 +1,8 @@
 const express = require('express')
-const { crearProyecto } = require('../controllers/proyectoController')
+const {
+	crearProyecto,
+	obtenerProyectos,
+} = require('../controllers/proyectoController')
 const auth = require('../middleware/auth')
 const router = express.Router()
 const { check } = require('express-validator')
@@ -12,6 +15,6 @@ router.post(
 	auth,
 	crearProyecto
 )
-router.get('/', auth, crearProyecto)
+router.get('/', auth, obtenerProyectos)
 
 module.exports = router
