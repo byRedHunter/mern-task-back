@@ -3,6 +3,7 @@ const {
 	crearProyecto,
 	obtenerProyectos,
 	actualizarProyecto,
+	eliminarProyecto,
 } = require('../controllers/proyectoController')
 const auth = require('../middleware/auth')
 const router = express.Router()
@@ -28,5 +29,8 @@ router.put(
 	auth,
 	actualizarProyecto
 )
+
+// eliminar un proyecto
+router.delete('/:id', auth, eliminarProyecto)
 
 module.exports = router
