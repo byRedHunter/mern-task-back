@@ -2,6 +2,7 @@ const express = require('express')
 const {
 	crearProyecto,
 	obtenerProyectos,
+	actualizarProyecto,
 } = require('../controllers/proyectoController')
 const auth = require('../middleware/auth')
 const router = express.Router()
@@ -15,6 +16,17 @@ router.post(
 	auth,
 	crearProyecto
 )
+
+// obtener los proyectos de un usuario
 router.get('/', auth, obtenerProyectos)
+
+// actualizar proyecto via ID
+router.put(
+	'/:id',
+	auth,
+	[check('nombre', 'El nombre del proyecto es obligatorio').not().isEmpty()],
+	auth,
+	actualizarProyecto
+)
 
 module.exports = router
