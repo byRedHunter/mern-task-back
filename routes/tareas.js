@@ -2,7 +2,12 @@ const express = require('express')
 const { check } = require('express-validator')
 
 const auth = require('../middleware/auth')
-const { crearTarea, obtenerTarea } = require('../controllers/tareaController')
+const {
+	crearTarea,
+	obtenerTarea,
+	actualizarTarea,
+	eliminarTarea,
+} = require('../controllers/tareaController')
 
 const router = express.Router()
 
@@ -21,5 +26,11 @@ router.post(
 
 // obtener tarea por proyecto
 router.get('/', auth, obtenerTarea)
+
+// actualizar tarea
+router.put('/:id', auth, actualizarTarea)
+
+// eliminar una tarea
+router.put('/:id', auth, eliminarTarea)
 
 module.exports = router
