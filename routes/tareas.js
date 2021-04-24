@@ -31,6 +31,6 @@ router.get('/', auth, obtenerTarea)
 router.put('/:id', auth, actualizarTarea)
 
 // eliminar una tarea
-router.put('/:id', auth, eliminarTarea)
+router.delete('/:id', auth, eliminarTarea)
 
 module.exports = router
