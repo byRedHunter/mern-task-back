@@ -23,7 +23,7 @@ exports.autenticarUsuario = async (req, res) => {
 		// revisar el password
 		const passCorrecto = await bcryptjs.compare(password, usuario.password)
 		if (!passCorrecto) {
-			return res.status(400).json({ msg: 'Credenciale incorrecto.' })
+			return res.status(400).json({ msg: 'Credenciales incorrectas.' })
 		}
 
 		// si todo es correcto
@@ -53,7 +53,7 @@ exports.autenticarUsuario = async (req, res) => {
 // obtener usuario autenticado
 exports.usuarioAutenticado = async (req, res) => {
 	try {
-		const usuario = await Usuario.findById(req.usuario.id)
+		const usuario = await Usuario.findById(req.usuario.id).select('-password')
 		res.json(usuario)
 	} catch (error) {
 		console.log(error)
