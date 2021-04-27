@@ -83,9 +83,8 @@ exports.actualizarTarea = async (req, res) => {
 		// crear un objeto con la nueva tarea
 		const nuevaTarea = {}
 
-		if (nombre) nuevaTarea.nombre = nombre
-
-		if (estado) nuevaTarea.estado = estado
+		nuevaTarea.nombre = nombre
+		nuevaTarea.estado = estado
 
 		// guardar la tarea
 		tarea = await Tarea.findOneAndUpdate({ _id: req.params.id }, nuevaTarea, {
@@ -103,7 +102,7 @@ exports.actualizarTarea = async (req, res) => {
 exports.eliminarTarea = async (req, res) => {
 	try {
 		// extraer el proyecto
-		const { proyecto } = req.body
+		const { proyecto } = req.query
 
 		// verificar si existe la tarea o no
 		let tarea = await Tarea.findById(req.params.id)
